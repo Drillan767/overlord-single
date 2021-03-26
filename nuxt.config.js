@@ -1,9 +1,9 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'overlord-pending',
+    title: 'Joseph Levarato',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'fr'
     },
     meta: [
       { charset: 'utf-8' },
@@ -44,8 +44,32 @@ export default {
         host: 'smtp.example.com',
         port: 587
       }
+    }],
+    ['nuxt-i18n', {
+      fallbackLocale: 'fr',
+      detectBrowserLanguage: {
+        useCookie: true,
+        cookieKey: 'i18n_redirected',
+        onlyOnRoot: true
+      },
+      locales: [
+        {
+          code: 'en',
+          file: 'en-US.js'
+        },
+        {
+          code: 'fr',
+          file: 'fr-FR.js'
+        }
+      ],
+      lazy: true,
+      langDir: 'lang/',
+      defaultLocale: 'fr'
     }]
+
   ],
+
+  i18n: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
