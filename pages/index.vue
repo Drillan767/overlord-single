@@ -1,108 +1,159 @@
 <template>
-  <div class="container">
+  <div class="hero">
     <div>
       <div class="grid">
         <header>
-          <vs-row justify="center">
-            <Logo />
-          </vs-row>
+          <Logo />
+          <h1 class="title">
+            Joseph Levarato
+          </h1>
+          <p>
+            {{ $t('subtitle') }}
+          </p>
+          <p>
+            {{ $t('info') }}
+          </p>
         </header>
       </div>
-      <h1 class="title">
-        Joseph Levarato
-      </h1>
-      <vs-row justify="center">
-        <p>{{ $t('subtitle') }}</p>
-        <p>{{ $t('info') }}</p>
-      </vs-row>
+
+      <div class="form">
+        <div v-if="errors.length > 0" class="notification is-danger">
+          <ul>
+            <li v-for="(error, i) in errors" :key="i">
+              {{ error }}
+            </li>
+          </ul>
+        </div>
+
+        <div v-if="success" class="notifcation is-success">
+          {{ $t('email.success') }}
+        </div>
+        <div class="tile is-vertical">
+          <div class="tile">
+            <div class="tile is-parent is-vertical">
+              <b-field>
+                <b-input v-model="contact.name" :placeholder="$t('email.name')" />
+              </b-field>
+            </div>
+            <div class="tile is-parent">
+              <b-field>
+                <b-input v-model="contact.email" :placeholder="$t('email.email')" />
+              </b-field>
+            </div>
+          </div>
+          <div class="tile is-parent is-fullwidth">
+            <b-field>
+              <b-input v-model="contact.subject" :placeholder="$t('email.subject')" />
+            </b-field>
+          </div>
+          <div class="tile is-parent">
+            <b-field>
+              <b-input v-model="contact.message" type="textarea" :placeholder="$t('email.message_placeholder')" />
+            </b-field>
+          </div>
+
+          <div class="newsletter">
+            <label>
+              <input v-model="contact.hp" type="checkbox" value="1">
+            </label>
+          </div>
+
+          <div class="tile is-parent is-flex is-justify-content-end">
+            <b-button type="is-primary" :class="{'is-loading': loading}" @click="sendMail">
+              {{ $t('email.send') }}
+            </b-button>
+          </div>
+        </div>
+      </div>
+
+      <div class="logos">
+        <a href="https://github.com/Drillan767" target="_blank">
+          <Github />
+        </a>
+        <a href="https://www.linkedin.com/in/josephlevarato/" target="_blank">
+          <LinkedIn />
+        </a>
+        <a href="https://gitlab.com/JaegerNaut" target="_blank">
+          <Gitlab />
+        </a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import Logo from '~/components/Logo.vue'
-
+import Github from '~/components/Github'
+import LinkedIn from '~/components/Linkedin'
+import Gitlab from '~/components/Gitlab'
 export default {
   components: {
-    Logo
+    Logo,
+    Github,
+    LinkedIn,
+    Gitlab
+  },
+
+  data: () => ({
+    loading: false,
+    success: false,
+    errors: [],
+    contact: {
+      name: '',
+      subject: '',
+      email: '',
+      message: '',
+      hp: false
+    }
+  }),
+
+  mounted () {
+    console.log(process.env.MAIL_HOST)
+  },
+
+  methods: {
+    sendMail () {
+      this.validate()
+      if (this.errors.length === 0) {
+        this.loading = true
+        this.$mail.send({
+          envelope: {
+            from: this.contact.email,
+            to: process.env.USER_MAIL
+          },
+          subject: this.contact.subject,
+          message: this.contact.message
+        })
+          .then(() => {
+            this.loading = false
+            this.success = true
+          })
+      }
+    },
+
+    validate () {
+      this.errors = []
+      const fields = ['name', 'subject', 'message']
+      fields.forEach((field) => {
+        if (this.contact[field] === '') {
+          this.errors.push(this.$t('email.required', { field: this.$t(`email.${field}`) }))
+        }
+
+        if (this.contact[field] !== '' && this.contact[field].length <= 5) {
+          this.errors.push(this.$t('email.short', { field: this.$t(`email.${field}`) }))
+        }
+      })
+
+      const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])/
+
+      if (!regex.test(this.contact.email)) {
+        this.errors.push(this.$t('email.invalid'))
+      }
+
+      if (this.contact.hp) {
+        this.errors.push('O No.')
+      }
+    }
   }
 }
 </script>
-
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 55px;
-  color: #35495e;
-  letter-spacing: 1px;
-  text-transform: capitalize;
-  margin: 25px 0;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 1.1rem;
-  color: #526488;
-  word-spacing: 2px;
-  padding-bottom: 15px;
-  max-width: 600px;
-}
-
-.subtitle a {
-  font-weight: 500;
-  color: inherit;
-}
-
-.links {
-  padding-top: 15px;
-  margin-bottom: 20px;
-}
-
-.content-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 500px;
-}
-
-.plus {
-  font-size: 2.5rem;
-  margin: 15px;
-  color: #35495e;
-}
-
-.h3 {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  font-weight: 400;
-  margin: 10px;
-}
-</style>

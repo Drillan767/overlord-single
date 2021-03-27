@@ -1,0 +1,139 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.logo {
+  margin: 20px auto 0 auto;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+header h1 {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+header p {
+  text-align: center;
+  font-size: 1.4rem;
+  color: #eee;
+  word-spacing: 2px;
+  padding-bottom: 15px;
+  max-width: 600px;
+  font-family:
+    'Quicksand',
+    'Source Sans Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  font-weight: 400;
+  margin: 10px;
+}
+
+.hero {
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(225deg, #000, #2d006b);
+  background-size: 400% 400%;
+  -webkit-animation: gradiantanimate 50s ease infinite;
+  -moz-animation: gradiantanimate 50s ease infinite;
+  animation: gradiantanimate 50s ease infinite;
+}
+
+.title {
+  font-family: 'Metropolis-bold', sans-serif;
+  display: block;
+  font-weight: 300;
+  font-size: 55px;
+  color: #eee;
+  letter-spacing: 1px;
+  text-transform: capitalize;
+  margin: 25px 0;
+}
+
+.tile .field {
+  width: 100%;
+}
+
+label.vs-input__label--placeholder {
+  font-size: 1rem !important;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #5e5e5e !important;
+  opacity: 1; /* Firefox */
+}
+
+.newsletter {
+  display: none;
+}
+
+.logos {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+@-webkit-keyframes gradiantanimate {
+  0% {
+    background-position: 0 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@-moz-keyframes gradiantanimate {
+  0% {
+    background-position: 0 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@keyframes gradiantanimate {
+  0% {
+    background-position: 0 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@font-face {
+  font-family: 'Metropolis-bold';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('~assets/fonts/Metropolis-ExtraBold.otf') format('opentype');
+}

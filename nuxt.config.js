@@ -11,18 +11,21 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon-32x32.png' }
     ]
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    'vuesax/dist/vuesax.css'
+    'buefy/dist/buefy.css',
+    '~/assets/css/style.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '@/plugins/vuesax'
+    '~plugins/buefy.js',
+    '~plugins/vuelidate.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,11 +41,19 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    'nuxt-buefy',
     '@nuxtjs/axios',
     ['nuxt-mail', {
       smtp: {
-        host: 'smtp.example.com',
-        port: 587
+        host: process.env.MAIL_HOST,
+        port: process.env.MAIL_PORT,
+        tls: {
+          ciphers: 'SSLv3'
+        },
+        auth: {
+          user: process.env.MAIL_USERNAME,
+          pass: process.env.MAIL_PASSWORD
+        }
       }
     }],
     ['nuxt-i18n', {
@@ -69,7 +80,21 @@ export default {
 
   ],
 
-  i18n: {},
+  env: {
+    host: process.env.MAIL_HOST || 'Coucou test'
+  },
+
+  privateRuntimeConfig: {
+    // eslint-disable-next-line no-template-curly-in-string
+    port: process.env.MAIL_PORT
+    /*
+    MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME='jd.levarato@gmail.com'
+MAIL_PASSWORD='orqcqgopellopfec'
+     */
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
