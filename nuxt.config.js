@@ -87,13 +87,6 @@ export default {
   privateRuntimeConfig: {
     // eslint-disable-next-line no-template-curly-in-string
     port: process.env.MAIL_PORT
-    /*
-    MAIL_MAILER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME='jd.levarato@gmail.com'
-MAIL_PASSWORD='orqcqgopellopfec'
-     */
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
