@@ -36,7 +36,8 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
-    'nuxt-gsap-module'
+    'nuxt-gsap-module',
+    'nuxt-compress'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
