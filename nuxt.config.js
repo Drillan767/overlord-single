@@ -24,8 +24,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~plugins/buefy.js',
-    '~plugins/vuelidate.js'
+    '~plugins/buefy.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -80,20 +79,8 @@ export default {
 
   ],
 
-  env: {
-    host: process.env.MAIL_HOST || 'Coucou test'
-  },
-
-  privateRuntimeConfig: {
-    // eslint-disable-next-line no-template-curly-in-string
-    port: process.env.MAIL_PORT
-    /*
-    MAIL_MAILER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME='jd.levarato@gmail.com'
-MAIL_PASSWORD='orqcqgopellopfec'
-     */
+  publicRuntimeConfig: {
+    mailUsername: process.env.MAIL_USERNAME
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

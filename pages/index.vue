@@ -25,7 +25,7 @@
           </ul>
         </div>
 
-        <div v-if="success" class="notifcation is-success">
+        <div v-if="success" class="notification is-success">
           {{ $t('email.success') }}
         </div>
         <div class="tile is-vertical">
@@ -86,6 +86,7 @@ import Logo from '~/components/Logo.vue'
 import Github from '~/components/Github'
 import LinkedIn from '~/components/Linkedin'
 import Gitlab from '~/components/Gitlab'
+
 export default {
   components: {
     Logo,
@@ -93,6 +94,8 @@ export default {
     LinkedIn,
     Gitlab
   },
+
+  asyncData ({ $config: { mailUsername } }) {},
 
   data: () => ({
     loading: false,
@@ -107,10 +110,6 @@ export default {
     }
   }),
 
-  mounted () {
-    console.log(process.env.MAIL_HOST)
-  },
-
   methods: {
     sendMail () {
       this.validate()
@@ -119,14 +118,21 @@ export default {
         this.$mail.send({
           envelope: {
             from: this.contact.email,
-            to: process.env.USER_MAIL
+            to: this.$config.mailUsername
           },
           subject: this.contact.subject,
-          message: this.contact.message
+          text: this.contact.message
         })
           .then(() => {
             this.loading = false
             this.success = true
+            this.contact = {
+              name: '',
+              subject: '',
+              email: '',
+              message: '',
+              hp: false
+            }
           })
       }
     },

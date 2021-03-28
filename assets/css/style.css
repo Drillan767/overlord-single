@@ -7,6 +7,7 @@
 
 .logo {
   margin: 20px auto 0 auto;
+  filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.7));
 }
 
 header {
