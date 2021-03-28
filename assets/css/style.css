@@ -6,6 +6,7 @@
 }
 
 .logo {
+  opacity: 0;
   margin: 20px auto 0 auto;
   filter: drop-shadow(0 0 7px rgba(255, 255, 255, 0.7));
 }
@@ -17,11 +18,13 @@ header {
 }
 
 header h1 {
+  opacity: 0;
   margin-bottom: 30px;
   text-align: center;
 }
 
 header p {
+  opacity: 0;
   text-align: center;
   font-size: 1.4rem;
   color: #eee;
@@ -79,6 +82,10 @@ label.vs-input__label--placeholder {
   opacity: 1; /* Firefox */
 }
 
+.form {
+  opacity: 0;
+}
+
 .newsletter {
   display: none;
 }
@@ -87,6 +94,12 @@ label.vs-input__label--placeholder {
   margin-top: 20px;
   display: flex;
   justify-content: space-evenly;
+}
+
+.logos .github,
+.logos .gitlab,
+.logos .linkedin {
+  opacity: 0;
 }
 
 @-webkit-keyframes gradiantanimate {
