@@ -27,6 +27,7 @@
     "eslint": "^7.22.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.7.0",
+    "nuxt-gsap-module": "^1.2.1",
     "stylelint": "^13.12.0",
     "stylelint-config-standard": "^21.0.0"
   }

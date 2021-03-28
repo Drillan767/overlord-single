@@ -110,6 +110,23 @@ export default {
     }
   }),
 
+  mounted () {
+    this.$gsap
+      .fromTo('.logo', {
+        opacity: 0,
+        y: window.innerHeight / 2,
+        yPercent: -50
+      },
+      {
+        opacity: 1,
+        y: window.innerHeight / 2,
+        yPercent: -50,
+        duration: 1,
+        ease: 'power4.out',
+        onComplete: () => this.moveUpLogo()
+      })
+  },
+
   methods: {
     sendMail () {
       this.validate()
@@ -159,6 +176,89 @@ export default {
       if (this.contact.hp) {
         this.errors.push('O No.')
       }
+    },
+
+    moveUpLogo () {
+      this.$gsap.to('.logo', {
+        y: 0,
+        yPercent: 0,
+        duration: 1,
+        ease: 'power4.out',
+        onComplete: () => this.displayName()
+      })
+    },
+
+    displayName () {
+      this.$gsap.fromTo('h1', {
+        scale: 1.2,
+        opacity: 0
+      },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 0.5,
+        onComplete: () => this.displayText()
+      })
+    },
+
+    displayText () {
+      this.$gsap.fromTo('p', {
+        opacity: 0,
+        y: 50
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.5,
+        onComplete: () => this.displayForm()
+      })
+    },
+
+    displayForm () {
+      this.$gsap.fromTo('.form', {
+        opacity: 0,
+        y: -25
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        stagger: 0.2,
+        onComplete: () => this.displayLogos()
+      })
+    },
+
+    displayLogos () {
+      this.$gsap.fromTo('.linkedin', {
+        opacity: 0,
+        y: 50
+      },
+      {
+        opacity: 1,
+        duration: 0.5,
+        y: 0
+      })
+
+      this.$gsap.fromTo('.github', {
+        opacity: 0,
+        x: -50
+      },
+      {
+        opacity: 1,
+        duration: 0.5,
+        x: 0
+      })
+
+      this.$gsap.fromTo('.gitlab', {
+        opacity: 0,
+        x: 50
+      },
+      {
+        opacity: 1,
+        duration: 0.5,
+        x: 0
+      })
     }
   }
 }
