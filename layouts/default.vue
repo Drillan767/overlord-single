@@ -26,6 +26,11 @@ export default {
           content: 'https://josephlevarato.me'
         },
         {
+          hid: 'og_title',
+          name: 'og:title',
+          content: 'Joseph Levarato'
+        },
+        {
           hid: 'twitter_url',
           name: 'twitter:url',
           content: 'https://josephlevarato.me'
@@ -39,6 +44,11 @@ export default {
           hid: 'twitter_image',
           name: 'twitter:image',
           content: '/logo.png'
+        },
+        {
+          hid: 'twitter_title',
+          name: 'twitter:title',
+          content: 'Joseph Levarato'
         },
         ...i18nHead.meta
       ],
