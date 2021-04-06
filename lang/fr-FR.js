@@ -13,5 +13,9 @@ export default {
     required: 'Le champ "{field}" est requis.',
     short: 'Le champ "{field}" devrait faire plus de 5 caractères',
     success: 'Votre message a été envoyé avec succès ! Merci, je vous répondrai dès que possible'
+  },
+
+  seo: {
+    description: "Le site personnel et temporaire de Joseph Levarato. N'hésitez pas à me contacter"
   }
 }

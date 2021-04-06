@@ -59,6 +59,8 @@ export default {
     }],
     ['nuxt-i18n', {
       fallbackLocale: 'fr',
+      baseUrl: 'https://josephlevarato.me',
+      seo: true,
       detectBrowserLanguage: {
         useCookie: true,
         cookieKey: 'i18n_redirected',

@@ -13,5 +13,9 @@ export default {
     required: 'The field {field} is required.',
     short: 'The field "{field}" should have more than 5 characters',
     success: 'Your message was successfully sent! Thank you, I\'ll get back to you really soon'
+  },
+
+  seo: {
+    description: "Joseph Levarato's temporary personal website. Don't hesitate to contact me for whatever reason you want."
   }
 }
