@@ -16,6 +16,6 @@ export default {
   },
 
   seo: {
-    description: "Le site personnel et temporaire de Joseph Levarato. N'hésitez pas à me contacter"
+    description: "Le site personnel et temporaire de Joseph Levarato. N'hésitez pas à me contacter."
   }
 }

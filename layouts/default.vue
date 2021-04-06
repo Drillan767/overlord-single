@@ -22,13 +22,23 @@ export default {
         },
         {
           hid: 'og_url',
-          name: 'og:url',
+          property: 'og:url',
           content: 'https://josephlevarato.me'
         },
         {
+          hid: 'og_image',
+          property: 'og:image',
+          content: 'https://josephlevarato.me/logo.png'
+        },
+        {
           hid: 'og_title',
-          name: 'og:title',
+          property: 'og:title',
           content: 'Joseph Levarato'
+        },
+        {
+          hid: 'og_description',
+          property: 'og:description',
+          content: this.$t('seo.description')
         },
         {
           hid: 'twitter_url',
@@ -42,13 +52,18 @@ export default {
         },
         {
           hid: 'twitter_image',
-          name: 'twitter:image',
-          content: '/logo.png'
+          name: 'twitter:image:src',
+          content: 'https://josephlevarato.me/logo.png'
         },
         {
           hid: 'twitter_title',
           name: 'twitter:title',
           content: 'Joseph Levarato'
+        },
+        {
+          hid: 'twitter_description',
+          name: 'twitter:description',
+          content: this.$t('seo.description')
         },
         ...i18nHead.meta
       ],
